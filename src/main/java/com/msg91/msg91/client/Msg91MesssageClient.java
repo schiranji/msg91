@@ -22,7 +22,7 @@ public class Msg91MesssageClient {
     private static final String URL = "https://control.msg91.com/api/v5/flow/";
     private static final String TEMPLATE_ID1 = "663f42eed6fc0537e05aa472";
     public static final String WHATSAPP_URL_WITH_TEMPLATE = "https://api.msg91.com/api/v5/whatsapp/whatsapp-outbound-message/bulk/";
-    private static final String AUTH_KEY = "421181AdqdCfMH663f4347P1";//""<Auth Key Here>";
+    private static final String AUTH_KEY = "<Auth Key Here>";
     private static final String INTEGRATED_NUMBER = "<Integrated Phone Number here>";
     private static final String TO_PHONE_NUMBER = "<Send Whatsapp message to this phone>";
     private static final String WHATSAPP_TEMPLATE = "<Whatsapp registered template here>";
