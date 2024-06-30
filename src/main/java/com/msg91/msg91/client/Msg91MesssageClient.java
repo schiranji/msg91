@@ -69,18 +69,29 @@ public class Msg91MesssageClient {
         ResponseEntity<Response> response = restTemplate.postForEntity(URL, entity, Response.class);
         return response.getBody();
     }
-    public Map sendWhatsappMessageUsingTemplate(String phoneNumber, String template, List<String> paramsList) {
+    
+    public Map sendWhatsappMessageUsingTemplate(String phoneNumber, String template, List<String> paramsList) throws JsonProcessingException {
         System.out.println("Whatsapp Template " + template);
         System.out.println("URL " + WHATSAPP_URL_WITH_TEMPLATE);
         List<String> phoneNumbers = new ArrayList<>();
         phoneNumbers.add(phoneNumber);
         Msg91WhatsappRequest request = new Msg91WhatsappRequest(INTEGRATED_NUMBER, template, phoneNumbers, paramsList);
         HttpHeaders headers = getHttpHeaders();
-        HttpEntity<Msg91WhatsappRequest> entity = new HttpEntity<>(request, headers);
+        HttpEntity<String> entity = new HttpEntity<>(getMapper().writeValueAsString(request), headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Map> response = restTemplate.postForEntity(WHATSAPP_URL_WITH_TEMPLATE, entity, Map.class);
         return response.getBody();
     }
+
+    private static ObjectMapper getMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        mapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES, false);
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        return mapper;
+    }
+    
 
     private HttpHeaders getHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();
