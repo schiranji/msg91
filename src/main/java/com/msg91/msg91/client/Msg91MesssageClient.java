@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,7 @@ import java.util.Map;
 @Slf4j
 public class Msg91MesssageClient {
     private static final String URL = "https://control.msg91.com/api/v5/flow/";
-    private static final String TEMPLATE_ID1 = "663f42eed6fc0537e05aa472";
+    private static final String TEMPLATE_ID1 = "<Mesage Template Id>";
     public static final String WHATSAPP_URL_WITH_TEMPLATE = "https://api.msg91.com/api/v5/whatsapp/whatsapp-outbound-message/bulk/";
     private static final String AUTH_KEY = "<Auth Key Here>";
     private static final String INTEGRATED_NUMBER = "<Integrated Phone Number here>";
