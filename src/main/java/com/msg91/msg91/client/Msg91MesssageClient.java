@@ -1,5 +1,9 @@
 package com.msg91.msg91.client;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.msg91.msg91.client.request.msg.Recipient;
 import com.msg91.msg91.client.request.msg.Request;
 import com.msg91.msg91.client.request.whatsapp.Msg91WhatsappRequest;
@@ -12,7 +16,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +30,7 @@ public class Msg91MesssageClient {
     private static final String TO_PHONE_NUMBER = "<Send Whatsapp message to this phone>";
     private static final String WHATSAPP_TEMPLATE = "<Whatsapp registered template here>";
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws Exception {
         Msg91MesssageClient msg99 = new Msg91MesssageClient();
         /*Map<String, String> params = new HashMap<>();
         params.put("var", "VAR1");
@@ -69,7 +72,7 @@ public class Msg91MesssageClient {
         ResponseEntity<Response> response = restTemplate.postForEntity(URL, entity, Response.class);
         return response.getBody();
     }
-    
+
     public Map sendWhatsappMessageUsingTemplate(String phoneNumber, String template, List<String> paramsList) throws JsonProcessingException {
         System.out.println("Whatsapp Template " + template);
         System.out.println("URL " + WHATSAPP_URL_WITH_TEMPLATE);
@@ -91,7 +94,7 @@ public class Msg91MesssageClient {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         return mapper;
     }
-    
+
 
     private HttpHeaders getHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();
